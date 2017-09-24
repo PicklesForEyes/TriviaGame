@@ -17,8 +17,8 @@ $(document).ready(function() {
     },
 
     start: function() {
-      intervalID = setInterval(timer.count, 1000);
       timer.time = 30;
+      intervalID = setInterval(timer.count, 1000);
     },
 
     stop: function() {
@@ -26,8 +26,6 @@ $(document).ready(function() {
     }
 
   }
-
-  // timer.start();
 
   function drawQuestions() {
     var current = questions[questionNum];
@@ -47,7 +45,22 @@ $(document).ready(function() {
     timer.start();
   }
 
+  function gifGrabber(keyWord) {
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" + keyWord + "&limit=20";
+    var num = Math.floor(Math.random() * 20);
+    $.ajax({
+      url: queryURL,
+      method: 'GET'
+    }).done(function(obj){
+      var imageSrc = obj.data[num].images.downsized.url;
+      var image = $('<img>');
+        image.attr('src', imageSrc);
+      $('#questions-results').append(image);
+    })
+  }
+
   drawQuestions();
+  gifGrabber('wrong')
 })
 
 var questions = {
