@@ -25,6 +25,21 @@ $(document).ready(function() {
 
   }
 
-  timer.start();
+  // timer.start();
+
+
 
 })
+
+var questions = {
+  1: {
+    question: 'Question1',
+    options: ['true', 'false'],
+    answer: 'true'
+  },
+  2: {
+    question: 'Question2',
+    options: ['a','b','c','d'],
+    answer: 'b'
+  }
+}
