@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   var intervalID;
 
-  questionNum = 1;
+  var questionNum = 2;
 
   var timer = {
     time: 30,
@@ -32,8 +32,19 @@ $(document).ready(function() {
   function drawQuestions() {
     var current = questions[questionNum];
     var thisQuestion = $('<p>');
-      thisQuestion.text(current.question)
+      thisQuestion.text(current.question);
     $('#questions-results').append(thisQuestion);
+    
+    for(var i = 0; i < current.options.length; i++){
+      console.log(current.options[i]);
+      var answers = $('<input>');
+      var label = $('<label>');
+        answers.attr('type', 'radio');
+        answers.attr('value', current.options[i])
+        label.text(current.options[i]);
+      $('#questions-results').append(answers, label)
+    }
+    timer.start();
   }
 
   drawQuestions();
