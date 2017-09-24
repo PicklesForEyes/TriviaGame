@@ -18,11 +18,11 @@ $(document).ready(function() {
 
     start: function() {
       intervalID = setInterval(timer.count, 1000);
+      timer.time = 30;
     },
 
     stop: function() {
       clearInterval(intervalID);
-      timer.time = 30;
     }
 
   }
@@ -34,7 +34,7 @@ $(document).ready(function() {
     var thisQuestion = $('<p>');
       thisQuestion.text(current.question);
     $('#questions-results').append(thisQuestion);
-    
+
     for(var i = 0; i < current.options.length; i++){
       console.log(current.options[i]);
       var answers = $('<input>');
