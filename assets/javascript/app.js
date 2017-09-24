@@ -2,6 +2,8 @@ $(document).ready(function() {
 
   var intervalID;
 
+  questionNum = 1;
+
   var timer = {
     time: 30,
 
@@ -27,8 +29,14 @@ $(document).ready(function() {
 
   // timer.start();
 
+  function drawQuestions() {
+    var current = questions[questionNum];
+    var thisQuestion = $('<p>');
+      thisQuestion.text(current.question)
+    $('#questions-results').append(thisQuestion);
+  }
 
-
+  drawQuestions();
 })
 
 var questions = {
