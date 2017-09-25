@@ -52,6 +52,15 @@ $(document).ready(function() {
     timer.start();
   }
 
+  $('#done').on('click', function() {
+    var userAnswer = $('input[name='+radioName+']:checked', '#current-answers').val();
+    if(userAnswer === current.answer){
+      console.log('correct answer');
+    } else {
+      console.log('wrong/undefined');
+    }
+  })
+
   function gifGrabber(keyWord) {
     var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" + keyWord + "&limit=20";
     var num = Math.floor(Math.random() * 20);
