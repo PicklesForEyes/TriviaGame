@@ -4,6 +4,8 @@ $(document).ready(function() {
 
   var questionNum = 2;
 
+  var radioName = '';
+
   var timer = {
     time: 30,
 
@@ -34,8 +36,10 @@ $(document).ready(function() {
       thisQuestion.text(current.question);
     $('#current-question').append(thisQuestion);
 
+    radioName = current.name;
+
     for(var i = 0; i < current.options.length; i++){
-      console.log(current.options[i]);
+      // console.log(current.options[i]);
       var answers = $('<input>');
       var label = $('<label>');
         answers.attr('type', 'radio');
