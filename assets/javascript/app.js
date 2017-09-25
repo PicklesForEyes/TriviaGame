@@ -6,6 +6,8 @@ $(document).ready(function() {
 
   var radioName = '';
 
+  var current = questions[questionNum];
+
   var timer = {
     time: 30,
 
@@ -31,7 +33,6 @@ $(document).ready(function() {
   }
 
   function drawQuestions() {
-    var current = questions[questionNum];
     var thisQuestion = $('<p>');
       thisQuestion.text(current.question);
     $('#current-question').append(thisQuestion);
