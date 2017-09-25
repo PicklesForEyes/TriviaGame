@@ -12,12 +12,13 @@ $(document).ready(function() {
       // console.log(timer.time);
       if(timer.time === 0){
         timer.stop();
+        gifGrabber('lol');
       }
       $('#time-left').text('Time Remaining: ' + timer.time);
     },
 
     start: function() {
-      timer.time = 30;
+      // timer.time = 30;
       intervalID = setInterval(timer.count, 1000);
     },
 
@@ -38,7 +39,8 @@ $(document).ready(function() {
       var answers = $('<input>');
       var label = $('<label>');
         answers.attr('type', 'radio');
-        answers.attr('value', current.options[i])
+        answers.attr('value', current.options[i]);
+        answers.attr('name', current.name);
         label.text(current.options[i]);
       $('#questions-results').append(answers, label)
     }
@@ -60,18 +62,21 @@ $(document).ready(function() {
   }
 
   drawQuestions();
-  gifGrabber('wrong')
+  // gifGrabber('wrong')
+
 })
 
 var questions = {
   1: {
     question: 'Question1',
     options: ['true', 'false'],
+    name: 'first',
     answer: 'true'
   },
   2: {
     question: 'Question2',
     options: ['a','b','c','d'],
+    name: 'second',
     answer: 'b'
   }
 }
