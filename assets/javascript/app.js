@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   var intervalID;
 
-  var questionNum = 2;
+  var questionNum = 0;
 
   var radioName = '';
 
@@ -59,6 +59,8 @@ $(document).ready(function() {
     } else {
       console.log('wrong/undefined');
     }
+    questionNum++;
+    // drawQuestions();
   })
 
   function gifGrabber(keyWord) {
@@ -81,13 +83,13 @@ $(document).ready(function() {
 })
 
 var questions = {
-  1: {
+  0: {
     question: 'Question1',
     options: ['true', 'false'],
     name: 'first',
     answer: 'true'
   },
-  2: {
+  1: {
     question: 'Question2',
     options: ['a','b','c','d'],
     name: 'second',
