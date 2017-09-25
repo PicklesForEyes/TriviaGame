@@ -32,7 +32,7 @@ $(document).ready(function() {
     var current = questions[questionNum];
     var thisQuestion = $('<p>');
       thisQuestion.text(current.question);
-    $('#questions-results').append(thisQuestion);
+    $('#current-question').append(thisQuestion);
 
     for(var i = 0; i < current.options.length; i++){
       console.log(current.options[i]);
@@ -42,7 +42,7 @@ $(document).ready(function() {
         answers.attr('value', current.options[i]);
         answers.attr('name', current.name);
         label.text(current.options[i]);
-      $('#questions-results').append(answers, label)
+      $('#current-answers').append(answers, label)
     }
     timer.start();
   }
