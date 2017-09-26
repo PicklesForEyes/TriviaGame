@@ -18,7 +18,7 @@ $(document).ready(function() {
         timer.stop();
         gifGrabber('lol');
       }
-      $('#time-left').text('Time Remaining: ' + timer.time);
+      $('#time-left').text(timer.time);
     },
 
     start: function() {
@@ -33,37 +33,44 @@ $(document).ready(function() {
   }
 
   function drawQuestions() {
+    timer.time = 30;
+    $('#questions-results').empty();
     var thisQuestion = $('<p>');
-      thisQuestion.text(current.question);
-    $('#current-question').append(thisQuestion);
+      thisQuestion.text(questions[questionNum].question);
+    $('#questions-results').append(thisQuestion);
 
     radioName = current.name;
 
-    for(var i = 0; i < current.options.length; i++){
+    for(var i = 0; i < questions[questionNum].options.length; i++){
       // console.log(current.options[i]);
       var answers = $('<input>');
       var label = $('<label>');
         answers.attr('type', 'radio');
-        answers.attr('value', current.options[i]);
-        answers.attr('name', current.name);
-        label.text(current.options[i]);
-      $('#current-answers').append(answers, label)
+        answers.attr('value', questions[questionNum].options[i]);
+        answers.attr('name', questions[questionNum].name);
+        label.text(questions[questionNum].options[i]);
+      $('#questions-results').append(answers, label)
     }
     timer.start();
   }
 
   $('#done').on('click', function() {
-    var userAnswer = $('input[name='+radioName+']:checked', '#current-answers').val();
+    timer.stop();
+    var userAnswer = $('input[name='+radioName+']:checked', '#questions-results').val();
     if(userAnswer === current.answer){
       console.log('correct answer');
+      correctAnswer();
     } else {
       console.log('wrong/undefined');
     }
     questionNum++;
-    // drawQuestions();
+    // console.log(questionNum);
+    // console.log(current);
+    drawQuestions();
   })
 
   function gifGrabber(keyWord) {
+    $('#questions-results').empty();
     var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" + keyWord + "&limit=20";
     var num = Math.floor(Math.random() * 20);
     $.ajax({
@@ -77,10 +84,19 @@ $(document).ready(function() {
     })
   }
 
+  function correctAnswer() {
+    setTimeout(drawQuestions, 3000);
+    $('#questions-results').empty();
+    $('#questions-results').text('Wow! Great Success');
+    gifGrabber('Success');
+  }
+
   drawQuestions();
   // gifGrabber('wrong')
 
 })
+
+
 
 var questions = {
   0: {
