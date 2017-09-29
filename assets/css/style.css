@@ -1,0 +1,31 @@
+* {
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Helvetica';
+  font-size: 24pt;
+  font-weight: bold;
+  padding: 20px;
+}
+
+.quiz-questions {
+  font-family: 'Helvetica';
+  font-size: 16pt;
+  padding: 10px;
+}
+
+.timer{
+  font-family: 'Helvetica';
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+.mid-time{
+  color: orange;
+}
+
+.low-time{
+  color:red;
+}
