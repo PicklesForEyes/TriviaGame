@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   var intervalID;
 
-  var totalCorrect;
+  var totalCorrect = 0;
 
   var timer = {
     time: 120,
@@ -50,19 +50,21 @@ $(document).ready(function() {
     timer.start();
   }
 
-  $('#done').on('click', function() {
+  $('#done').on('click', function(event) {
+    event.preventDefault();
     timer.stop();
-    var questionNames = ['0', '1',
-       // 'third', 'fourth','fifth','sixth','seventh','eigth','ninth','tenth'
-       ]
+    var questionNames = ['0', '1','2','3','4','5','6','7','8','9'];
     
     for (var i = 0; i < questionNames.length; i++){
       var userAnswer = $('input[name='+questionNames[i]+']:checked', '#questions-results').val();
-      // console.log(userAnswer);
-      if(userAnswer === questions[questionNames[i]].answer){
+      console.log(userAnswer);
+      if(userAnswer === questions[i].answer){
         totalCorrect++;
+        console.log('i checked the answer')
+        console.log(totalCorrect)
       }
     }
+
 
     $('#questions-results').empty();
 
@@ -75,12 +77,12 @@ $(document).ready(function() {
     } else if (totalCorrect > 3){
       gifGrabber('not bad');
     } else {
-      gifGrabber('ouch')
+      gifGrabber('ouch');
     }
   })
 
   function gifGrabber(keyWord) {
-    $('#questions-results').empty();
+    // $('#questions-results').empty();
     var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + keyWord + "&limit=20";
     $.ajax({
       url: queryURL,
