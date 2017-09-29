@@ -2,13 +2,7 @@ $(document).ready(function() {
 
   var intervalID;
 
-  // var questionNum = 0;
-
   var totalCorrect;
-
-  var radioName = '';
-
-  // var current = questions[questionNum];
 
   var timer = {
     time: 120,
@@ -35,7 +29,7 @@ $(document).ready(function() {
   }
 
   function drawQuestions() {
-    for (var i = 0; i < 2; i++){
+    for (var i = 0; i < 10; i++){
       var div = $('<div>');
       var currentQuestion = $('<p>');
         currentQuestion.addClass('question');
@@ -72,7 +66,7 @@ $(document).ready(function() {
 
     $('#questions-results').empty();
 
-    var results = $('<h3>You got ' + totalCorrect + ' out of 10!');
+    var results = $('<h3>You got ' + totalCorrect + ' out of 10 correct!');
 
     $('#questions-results').append(results);
 
@@ -101,17 +95,7 @@ $(document).ready(function() {
     })
   }
 
-// gifGrabber('good job')
-
-  function correctAnswer() {
-    // // setTimeout(drawQuestions, 3000);
-    // $('#questions-results').empty();
-    // $('#questions-results').text('Wow! Great Success');
-    // gifGrabber('Success');
-  }
-
   drawQuestions();
-  // gifGrabber('wrong')
 
 })
 
@@ -119,15 +103,63 @@ $(document).ready(function() {
 
 var questions = {
   0: {
-    question: 'Question1',
-    options: ['true', 'false'],
+    question: "Patrick I don't think that _____ is a real word",
+    options: ['howdy', 'wazzup', 'wumbo', 'infernal'],
     name: '0',
-    answer: 'true'
+    answer: 'wumbo'
   },
   1: {
-    question: 'Question2',
-    options: ['a','b','c','d'],
+    question: 'Is _____ an instrument?',
+    options: ['mustard','ketchup','ranch','mayonnaise'],
     name: '1',
-    answer: 'b'
+    answer: 'mayonnaise'
+  },
+  2: {
+    question: 'There once was an ugly barnicle, he was so ugly that everyone _____ ... the end.',
+    options: ['left', 'died', 'cried', 'laughed'],
+    name: '2',
+    answer: 'died'
+  },
+  3: {
+    question: "Now he's gonna kick my _____!",
+    options: ['butt','shins', 'snail', 'ball'],
+    name: '3',
+    answer: 'butt'
+  },
+  4: {
+    question: "I stubbed my toe last week and only cried for __ minutes",
+    options: ['10','5','15','20'],
+    name: '4',
+    answer: '20'
+  },
+  5: {
+    question: "Are you _____ now? That's okay, take your time.",
+    options: ['hungry','Squidward','tired','ugly'],
+    name: '5',
+    answer: 'Squidward'
+  },
+  6: {
+    question: "HAHAHAHA THAT GUY GOT HIT IN THE HEAD WITH (A) _____ HAHAHA.",
+    options: ['LAMB CHOP','COCONUT','MAYONNAISE','BOWLING BALL'],
+    name: '6',
+    answer: 'COCONUT'
+  },
+  7: {
+    question: 'My sandwich tastes like a fried _____! My sandwich is a fried _____!',
+    options: ['boot','fish-hook','egg','wumbo'],
+    name: '7',
+    answer: 'boot'
+  },
+  8: {
+    question: "Ha ha ha ha, it's a _____",
+    options: ['elephant','giraffe','porcupine','zebra'],
+    name: '8',
+    answer: 'giraffe'
+  },
+  9: {
+    question: "This is a load of _____...",
+    options: ['balogna','crap','malarkey','barnacles'],
+    name: '9',
+    answer: 'barnacles'
   }
 }
