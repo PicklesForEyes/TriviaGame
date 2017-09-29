@@ -29,6 +29,7 @@ $(document).ready(function() {
   }
 
   function drawQuestions() {
+    $('#questions-results').empty();
     for (var i = 0; i < 10; i++){
       var div = $('<div>');
       var currentQuestion = $('<p>');
@@ -50,8 +51,7 @@ $(document).ready(function() {
     timer.start();
   }
 
-  $('#done').on('click', function(event) {
-    event.preventDefault();
+  $('#done').on('click', function() {
     timer.stop();
     var questionNames = ['0', '1','2','3','4','5','6','7','8','9'];
     
@@ -60,15 +60,15 @@ $(document).ready(function() {
       console.log(userAnswer);
       if(userAnswer === questions[i].answer){
         totalCorrect++;
-        console.log('i checked the answer')
-        console.log(totalCorrect)
+        // console.log('i checked the answer')
+        // console.log(totalCorrect)
       }
     }
 
 
     $('#questions-results').empty();
 
-    var results = $('<h3>You got ' + totalCorrect + ' out of 10 correct!');
+    var results = $('<h3>You got ' + totalCorrect + ' out of 10 correct!</h3>');
 
     $('#questions-results').append(results);
 
@@ -88,7 +88,7 @@ $(document).ready(function() {
       url: queryURL,
       method: 'GET'
     }).done(function(obj){
-      console.log(obj)
+      // console.log(obj)
       var imageSrc = obj.data.fixed_height_downsampled_url;
       // console.log(imageSrc)
       var image = $('<img>');
