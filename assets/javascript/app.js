@@ -12,14 +12,15 @@ $(document).ready(function() {
       // console.log(timer.time);
       if(timer.time < 31 && timer.time > 15){
         $('#time-left').addClass('mid-time')
-      }else if(timer.time < 16){
+      }else if(timer.time < 16 && timer.time > 0){
         $('#time-left').addClass('low-time')
       } else if(timer.time === 0){
         timer.stop();
         var timeup = $('<h3 class="timer">Out of Time</h3>');
         $('#questions-results').empty();
         $('#questions-results').append(timeup);
-        gifGrabber('lol');
+        gifGrabber('nope');
+        $('.done-button').empty();
       }
       $('#time-left').text(timer.time);
     },
@@ -75,17 +76,12 @@ $(document).ready(function() {
 
     $('#questions-results').empty();
 
-    var results = $('<h3>You got ' + totalCorrect + ' out of 10 correct!</h3>');
+    var results = $('<h3 class="success">You got ' + totalCorrect + ' out of 10 correct!</h3>');
 
     $('#questions-results').append(results);
 
-    if (totalCorrect > 5){
-      gifGrabber('good job');
-    } else if (totalCorrect > 3){
-      gifGrabber('not bad');
-    } else {
-      gifGrabber('ouch');
-    }
+    gifGrabber('spongebob');
+    $('.done-button').empty();
   })
 
   function gifGrabber(keyWord) {
