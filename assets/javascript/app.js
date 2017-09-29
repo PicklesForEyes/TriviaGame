@@ -9,7 +9,7 @@ $(document).ready(function() {
   var current = questions[questionNum];
 
   var timer = {
-    time: 30,
+    time: 120,
 
     count: function() {
       timer.time--;
@@ -33,40 +33,40 @@ $(document).ready(function() {
   }
 
   function drawQuestions() {
-    timer.time = 30;
-    $('#questions-results').empty();
-    var thisQuestion = $('<p>');
-      thisQuestion.text(questions[questionNum].question);
-    $('#questions-results').append(thisQuestion);
-
-    radioName = current.name;
-
-    for(var i = 0; i < questions[questionNum].options.length; i++){
-      // console.log(current.options[i]);
-      var answers = $('<input>');
-      var label = $('<label>');
-        answers.attr('type', 'radio');
-        answers.attr('value', questions[questionNum].options[i]);
-        answers.attr('name', questions[questionNum].name);
-        label.text(questions[questionNum].options[i]);
-      $('#questions-results').append(answers, label)
+    for (var i = 0; i < 2; i++){
+      var div = $('<div>');
+      var currentQuestion = $('<p>');
+        currentQuestion.addClass('question');
+        currentQuestion.text(questions[i].question);
+      div.append(currentQuestion);
+      for(var j = 0; j < questions[i].options.length; j++){
+        var answers = $('<input>');
+          answers.attr('type', 'radio');
+          answers.attr('value', questions[i].options[j]);
+          answers.attr('name', questions[i].name);
+        var label = $('<label>');
+          label.text(questions[i].options[j]);
+        div.append(answers, label);
+      }
+      $('#questions-results').append(div);
     }
+    
     timer.start();
   }
 
   $('#done').on('click', function() {
-    timer.stop();
-    var userAnswer = $('input[name='+radioName+']:checked', '#questions-results').val();
-    if(userAnswer === current.answer){
-      console.log('correct answer');
-      correctAnswer();
-    } else {
-      console.log('wrong/undefined');
-    }
-    questionNum++;
-    // console.log(questionNum);
-    // console.log(current);
-    drawQuestions();
+    // timer.stop();
+    // var userAnswer = $('input[name='+radioName+']:checked', '#questions-results').val();
+    // if(userAnswer === current.answer){
+    //   console.log('correct answer');
+    //   correctAnswer();
+    // } else {
+    //   console.log('wrong/undefined');
+    // }
+    // questionNum++;
+    // // console.log(questionNum);
+    // // console.log(current);
+    // drawQuestions();
   })
 
   function gifGrabber(keyWord) {
@@ -85,10 +85,10 @@ $(document).ready(function() {
   }
 
   function correctAnswer() {
-    setTimeout(drawQuestions, 3000);
-    $('#questions-results').empty();
-    $('#questions-results').text('Wow! Great Success');
-    gifGrabber('Success');
+    // // setTimeout(drawQuestions, 3000);
+    // $('#questions-results').empty();
+    // $('#questions-results').text('Wow! Great Success');
+    // gifGrabber('Success');
   }
 
   drawQuestions();
