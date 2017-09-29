@@ -3,11 +3,22 @@
   text-align: center;
 }
 
+header {
+  background-color: #ffe202;
+}
+
 h1 {
   font-family: 'Helvetica';
   font-size: 24pt;
   font-weight: bold;
   padding: 20px;
+}
+
+.container {
+  background-color: #0ba0f0;
+  width: 1024px;
+  margin: 0 auto;
+  height: 100vh;
 }
 
 .quiz-questions {
@@ -20,6 +31,7 @@ h1 {
   font-family: 'Helvetica';
   font-size: 16pt;
   font-weight: bold;
+  padding-top: 20px;
 }
 
 .mid-time{
@@ -28,4 +40,12 @@ h1 {
 
 .low-time{
   color:red;
+}
+
+.success {
+  font-family: 'Helvetica';
+  font-weight: bold;
+  font-size: 20pt;
+  padding: 20px;
+
 }
