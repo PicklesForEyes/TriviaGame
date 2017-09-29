@@ -10,8 +10,15 @@ $(document).ready(function() {
     count: function() {
       timer.time--;
       // console.log(timer.time);
-      if(timer.time === 0){
+      if(timer.time < 31 && timer.time > 15){
+        $('#time-left').addClass('mid-time')
+      }else if(timer.time < 16){
+        $('#time-left').addClass('low-time')
+      } else if(timer.time === 0){
         timer.stop();
+        var timeup = $('<h3 class="timer">Out of Time</h3>');
+        $('#questions-results').empty();
+        $('#questions-results').append(timeup);
         gifGrabber('lol');
       }
       $('#time-left').text(timer.time);
