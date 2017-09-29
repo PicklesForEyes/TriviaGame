@@ -2,11 +2,13 @@ $(document).ready(function() {
 
   var intervalID;
 
-  var questionNum = 0;
+  // var questionNum = 0;
+
+  var totalCorrect;
 
   var radioName = '';
 
-  var current = questions[questionNum];
+  // var current = questions[questionNum];
 
   var timer = {
     time: 120,
@@ -50,39 +52,56 @@ $(document).ready(function() {
       }
       $('#questions-results').append(div);
     }
-    
+
     timer.start();
   }
 
   $('#done').on('click', function() {
-    // timer.stop();
-    // var userAnswer = $('input[name='+radioName+']:checked', '#questions-results').val();
-    // if(userAnswer === current.answer){
-    //   console.log('correct answer');
-    //   correctAnswer();
-    // } else {
-    //   console.log('wrong/undefined');
-    // }
-    // questionNum++;
-    // // console.log(questionNum);
-    // // console.log(current);
-    // drawQuestions();
+    timer.stop();
+    var questionNames = ['0', '1',
+       // 'third', 'fourth','fifth','sixth','seventh','eigth','ninth','tenth'
+       ]
+    
+    for (var i = 0; i < questionNames.length; i++){
+      var userAnswer = $('input[name='+questionNames[i]+']:checked', '#questions-results').val();
+      // console.log(userAnswer);
+      if(userAnswer === questions[questionNames[i]].answer){
+        totalCorrect++;
+      }
+    }
+
+    $('#questions-results').empty();
+
+    var results = $('<h3>You got ' + totalCorrect + ' out of 10!');
+
+    $('#questions-results').append(results);
+
+    if (totalCorrect > 5){
+      gifGrabber('good job');
+    } else if (totalCorrect > 3){
+      gifGrabber('not bad');
+    } else {
+      gifGrabber('ouch')
+    }
   })
 
   function gifGrabber(keyWord) {
     $('#questions-results').empty();
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" + keyWord + "&limit=20";
-    var num = Math.floor(Math.random() * 20);
+    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + keyWord + "&limit=20";
     $.ajax({
       url: queryURL,
       method: 'GET'
     }).done(function(obj){
-      var imageSrc = obj.data[num].images.downsized.url;
+      console.log(obj)
+      var imageSrc = obj.data.fixed_height_downsampled_url;
+      // console.log(imageSrc)
       var image = $('<img>');
         image.attr('src', imageSrc);
       $('#questions-results').append(image);
     })
   }
+
+// gifGrabber('good job')
 
   function correctAnswer() {
     // // setTimeout(drawQuestions, 3000);
@@ -102,13 +121,13 @@ var questions = {
   0: {
     question: 'Question1',
     options: ['true', 'false'],
-    name: 'first',
+    name: '0',
     answer: 'true'
   },
   1: {
     question: 'Question2',
     options: ['a','b','c','d'],
-    name: 'second',
+    name: '1',
     answer: 'b'
   }
 }
